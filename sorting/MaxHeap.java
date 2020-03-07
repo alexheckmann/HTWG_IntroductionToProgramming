@@ -1,23 +1,23 @@
 package sorting;
 
-public class MaxHeap {
+public class MaxHeap<T extends Comparable<T>> {
 
-    private Integer[] a;
+    private T[] a;
     private int N;
 
     public MaxHeap(int capacity) {
         N = 0;
-        a = new Integer[capacity + 1];
+        a = (T[]) new Comparable[capacity + 1];
     }
 
-    public void insert(int element) {
+    public void insert(T element) {
         a[++N] = element;
         swim(N);
     }
 
     private void swim(int i) {
-        while (i > 1 && a[i / 2] < a[i]) {
-            exchange(i, i / 2);
+        while (i > 1 && a[i / 2].compareTo(a[i]) < 0) {
+            swap(i, i / 2);
             i = i / 2;
         }
     }
@@ -25,9 +25,9 @@ public class MaxHeap {
     private void sink(int i) {
         while (2 * i <= N) {
             int j = 2 * i;
-            if (j < N && a[j] < a[j + 1]) {
+            if (j < N && a[j].compareTo(a[j + 1]) < 0) {
                 j++;
-            } else if (a[i] >= a[i + 1]) {
+            } else if (a[i].compareTo(a[i + 1]) >= 0) {
                 break;
             }
             exchange(i, j);
@@ -35,21 +35,21 @@ public class MaxHeap {
         }
     }
 
-    private void exchange(int i, int j) {
-        int t = a[i];
+    private void swap(int i, int j) {
+        T t = a[i];
         a[i] = a[j];
         a[j] = t;
     }
 
     public void print() {
         for (int i = 1; i <= N / 2; i++) {
-            System.out.print(" PARENT : " + (char) a[i].intValue() + " LEFT CHILD : " +
-                    (char) a[2 * i].intValue() + " RIGHT CHILD : " + (char) a[2 * i + 1].intValue() + "\n");
+            System.out.println(" PARENT : " + a[i].toString() + " LEFT CHILD : " +
+                    a[2 * i].toString() + " RIGHT CHILD : " + a[2 * i + 1].toString());
         }
     }
 
-    public int deleteMax() {
-        int root = a[1];
+    public T deleteMax() {
+        T root = a[1];
         exchange(1, N--);
         a[N + 1] = null;
         sink(1);
@@ -63,9 +63,9 @@ public class MaxHeap {
     public static void main(String[] args) {
 
         char[] c = "Seezeit".toCharArray();
-        MaxHeap maxHeap = new MaxHeap(c.length);
-        for (int i = 0; i < c.length; i++) {
-            maxHeap.insert(c[i]);
+        MaxHeap<Character> maxHeap = new MaxHeap<>(c.length);
+        for (char value : c) {
+            maxHeap.insert(value);
         }
 
         System.out.println("The Max Heap is ");
