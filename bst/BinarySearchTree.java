@@ -1,55 +1,53 @@
-package exercise12;
+public class BinarySearchTree<T extends Comparable<T>> {
 
-public class BinarySearchTree {
+    private T value;
+    private BinarySearchTree<T> leftSubTree;
+    private BinarySearchTree<T> rightSubTree;
 
-    private int value;
-    private BinarySearchTree leftSubTree;
-    private BinarySearchTree rightSubTree;
-
-    public BinarySearchTree(int value) {
+    public BinarySearchTree(T value) {
         this.value = value;
     }
 
-    public int getValue() {
+    public T getValue() {
         return value;
     }
 
-    public void setValue(int value) {
+    public void setValue(T value) {
         this.value = value;
     }
 
-    public BinarySearchTree getLeftSubTree() {
+    public BinarySearchTree<T> getLeftSubTree() {
         return leftSubTree;
     }
 
-    public void setLeftSubTree(BinarySearchTree leftSubTree) {
+    public void setLeftSubTree(BinarySearchTree<T> leftSubTree) {
         this.leftSubTree = leftSubTree;
     }
 
-    public BinarySearchTree getRightSubTree() {
+    public BinarySearchTree<T> getRightSubTree() {
         return rightSubTree;
     }
 
-    public void setRightSubTree(BinarySearchTree rightSubTree) {
+    public void setRightSubTree(BinarySearchTree<T> rightSubTree) {
         this.rightSubTree = rightSubTree;
     }
 
-    public void insert(int value) {
+    public void insert(T value) {
 
-        if (value < this.value) {
+        if (value.compareTo(this.value) < 0) {
 
             if (leftSubTree != null) {
                 leftSubTree.insert(value);
             } else {
-                leftSubTree = new BinarySearchTree(value);
+                leftSubTree = new BinarySearchTree<>(value);
             }
         }
 
-        if (value > this.value) {
+        if (value.compareTo(this.value) > 0) {
             if (rightSubTree != null) {
                 rightSubTree.insert(value);
             } else {
-                rightSubTree = new BinarySearchTree(value);
+                rightSubTree = new BinarySearchTree<>(value);
             }
         }
     }
@@ -79,12 +77,12 @@ public class BinarySearchTree {
         return size;
     }
 
-    public boolean contains(int value) {
+    public boolean contains(T value) {
 
-        if (value == this.value) {
+        if (value.equals(this.value)) {
             return true;
 
-        } else if (value < this.value) {
+        } else if (value.compareTo(this.value) < 0) {
 
             if (leftSubTree != null) {
                 return leftSubTree.contains(value);
