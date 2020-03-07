@@ -4,7 +4,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        BinarySearchTree bst = new BinarySearchTree(5);
+        BinarySearchTree<Integer> bst = new BinarySearchTree<>(5);
         bst.insert(10);
         bst.insert(3);
         bst.insert(2);
