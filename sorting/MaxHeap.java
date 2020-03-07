@@ -43,8 +43,8 @@ public class MaxHeap<T extends Comparable<T>> {
 
     public void print() {
         for (int i = 1; i <= N / 2; i++) {
-            System.out.println(" PARENT : " + a[i].toString() + " LEFT CHILD : " +
-                    a[2 * i].toString() + " RIGHT CHILD : " + a[2 * i + 1].toString());
+            System.out.println(" PARENT : " + a[i] + " LEFT CHILD : " +
+                    a[2 * i] + " RIGHT CHILD : " + a[2 * i + 1]);
         }
     }
 
