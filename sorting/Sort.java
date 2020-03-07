@@ -3,30 +3,31 @@ import org.jetbrains.annotations.NotNull;
 public class Sort {
 
     public static <T extends Comparable<T>> void mergeSort(T[] m) {
-        if (m.length <= 10) {
-            insertionSort(m);
+        if (m == null || m.length == 0) {
+            throw new IllegalArgumentException();
         } else {
-            T[] auxiliaryArray = (T[]) new Comparable[m.length];
-            mergeSort(m, auxiliaryArray, 0, m.length - 1);
+            if (m.length <= 10) {
+                insertionSort(m);
+            } else {
+                T[] auxiliaryArray = (T[]) new Comparable[m.length];
+                mergeSort(m, auxiliaryArray, 0, m.length - 1);
+            }
         }
     }
 
     private static <T extends Comparable<T>> void mergeSort(T[] m, T[] auxiliaryArray, int from, int to) {
-        if (m == null || m.length < 1) {
-            throw new IllegalArgumentException();
-        } else {
-            if (to <= from) {
-                return;
-            }
-            // declare middle
-            int middle = from + (to - from) / 2;
-            //sort left side
-            mergeSort(m, auxiliaryArray, from, middle);
-            //sort right side
-            mergeSort(m, auxiliaryArray, middle + 1, to);
-            // combine
-            merge(m, auxiliaryArray, from, middle, to);
+
+        if (to <= from) {
+            return;
         }
+        // declare middle
+        int middle = from + (to - from) / 2;
+        //sort left side
+        mergeSort(m, auxiliaryArray, from, middle);
+        //sort right side
+        mergeSort(m, auxiliaryArray, middle + 1, to);
+        // combine
+        merge(m, auxiliaryArray, from, middle, to);
     }
 
     private static <T extends Comparable<T>> void merge(T[] m, T[] auxiliaryArray, int from, int middle, int to) {
@@ -60,7 +61,7 @@ public class Sort {
     }
 
     public static <T extends Comparable<T>> void insertionSort(T[] m) {
-        if (m == null || m.length < 1) {
+        if (m == null || m.length == 0) {
             throw new IllegalArgumentException();
         } else {
             int N = m.length;
@@ -79,10 +80,14 @@ public class Sort {
     }
 
     public static <T extends Comparable<T>> void quickSort(T[] m) {
-        if (m.length <= 8) {
-            insertionSort(m);
+        if (m == null || m.length == 0) {
+            throw new IllegalArgumentException();
         } else {
-            quickSort(m, 0, m.length - 1);
+            if (m.length <= 8) {
+                insertionSort(m);
+            } else {
+                quickSort(m, 0, m.length - 1);
+            }
         }
     }
 
