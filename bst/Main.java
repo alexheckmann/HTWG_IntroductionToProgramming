@@ -12,7 +12,7 @@ public class Main {
         System.out.println("size: " + bst.size());
         System.out.println("is complete? " + isComplete(bst, 0, bst.size()));
         System.out.println("is full? " + isFull(bst));
-        System.out.println("Contains 3? " + bst.contains(6));
+        System.out.println("Contains 3? " + bst.contains(3));
 
 
     }
