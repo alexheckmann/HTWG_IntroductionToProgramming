@@ -1,15 +1,17 @@
-package sorting;
-
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Random;
-
 public class Sort {
-    private static double[] grades = {1.0, 1.3, 1.7, 2.0, 2.3, 2.7, 3.0, 3.3, 3.7, 4.0, 5.0};
-    private static Student[] students;
 
+    public static <T extends Comparable<T>> void mergeSort(T[] m) {
+        if (m.length <= 10) {
+            insertionSort(m);
+        } else {
+            T[] auxiliaryArray = (T[]) new Comparable[m.length];
+            mergeSort(m, auxiliaryArray, 0, m.length - 1);
+        }
+    }
 
-    private static void mergeSort(Student[] m, Student[] hilfsarray, int from, int to) {
+    private static <T extends Comparable<T>> void mergeSort(T[] m, T[] auxiliaryArray, int from, int to) {
         if (m == null || m.length < 1) {
             throw new IllegalArgumentException();
         } else {
@@ -19,17 +21,17 @@ public class Sort {
             // declare middle
             int middle = from + (to - from) / 2;
             //sort left side
-            mergeSort(m, hilfsarray, from, middle);
+            mergeSort(m, auxiliaryArray, from, middle);
             //sort right side
-            mergeSort(m, hilfsarray, middle + 1, to);
+            mergeSort(m, auxiliaryArray, middle + 1, to);
             // combine
-            merge(m, hilfsarray, from, middle, to);
+            merge(m, auxiliaryArray, from, middle, to);
         }
     }
 
-    private static void merge(Student[] m, Student[] hilfsarray, int from, int middle, int to) {
+    private static <T extends Comparable<T>> void merge(T[] m, T[] auxiliaryArray, int from, int middle, int to) {
         for (int k = from; k <= to; k++) {
-            hilfsarray[k] = m[k];
+            auxiliaryArray[k] = m[k];
         }
 
         int i = from;
@@ -38,18 +40,18 @@ public class Sort {
 
         // kleinsten Wert in Array zurück kopieren
         while (i <= middle && j <= to) {
-            if (hilfsarray[i].getGrade() <= hilfsarray[j].getGrade()) {
-                m[k] = hilfsarray[i];
+            if (auxiliaryArray[i].compareTo(auxiliaryArray[j]) <= 0) {
+                m[k] = auxiliaryArray[i];
                 i++;
             } else {
-                m[k] = hilfsarray[j];
+                m[k] = auxiliaryArray[j];
                 j++;
             }
             k++;
         }
         // copy left side
         while (i <= middle) {
-            m[k] = hilfsarray[i];
+            m[k] = auxiliaryArray[i];
             k++;
             i++;
         }
@@ -57,7 +59,7 @@ public class Sort {
 
     }
 
-    private static void insertionSort(Student[] m) {
+    public static <T extends Comparable<T>> void insertionSort(T[] m) {
         if (m == null || m.length < 1) {
             throw new IllegalArgumentException();
         } else {
@@ -65,8 +67,8 @@ public class Sort {
 
             for (int i = 0; i < N; i++) {
                 for (int j = i; j > 0; j--) {
-                    if (m[j - 1].getGrade() > m[j].getGrade()) {
-                        exchange(m, j - 1, j);
+                    if (m[j - 1].compareTo(m[j]) > 0) {
+                        swap(m, j - 1, j);
                     } else {
                         break;
                     }
@@ -76,41 +78,55 @@ public class Sort {
         }
     }
 
-    private static void exchange(@NotNull Student[] m, int i, int j) {
-        Student t = m[i];
+    public static <T extends Comparable<T>> void quickSort(T[] m) {
+        if (m.length <= 8) {
+            insertionSort(m);
+        } else {
+            quickSort(m, 0, m.length - 1);
+        }
+    }
+
+    private static <T extends Comparable<T>> void quickSort(T[] m, int from, int to) {
+        if (to <= from) {
+            return;
+        }
+
+        int j = divide(m, from, to);
+        quickSort(m, from, j - 1);
+        quickSort(m, j + 1, to);
+    }
+
+    private static <T extends Comparable<T>> int divide(@NotNull T[] m, int from, int to) {
+        int i = from;
+        int j = to + 1;
+
+        while (true) {
+            while (m[++i].compareTo(m[from]) < 0) {
+                if (i == to) {
+                    break;
+                }
+            }
+
+            while (m[--j].compareTo(m[from]) > 0) {
+                if (j == from) {
+                    break;
+                }
+            }
+
+            if (i >= j) {
+                break;
+            }
+            swap(m, i, j);
+
+        }
+        swap(m, from, j);
+        return j;
+    }
+
+    private static <T> void swap(@NotNull T[] m, int i, int j) {
+        T t = m[i];
         m[i] = m[j];
         m[j] = t;
     }
 
-    private static void input() {
-        In in = new In("mails");
-        Random random = new Random();
-        String[] mails = in.readAllStrings();
-        students = new Student[mails.length];
-
-        for (int i = 0; i < mails.length; i++) {
-            int randomIndex = random.nextInt(grades.length);
-            students[i] = new Student();
-            students[i].setMail(mails[i]);
-            students[i].setGrade(grades[randomIndex]);
-
-        }
-
-
-    }
-
-    public static void main(String[] args) {
-        input();
-        int N = students.length;
-        Stopwatch stopwatch = new Stopwatch();
-        insertionSort(students);
-
-        Student[] hilfsarray = new Student[N];
-        mergeSort(students, hilfsarray, 0, N - 1);
-        StdOut.println(stopwatch.elapsedTime());
-        for (Student s : students) {
-            StdOut.print(s.getMail() + " " + s.getGrade() + "\n");
-        }
-
-    }
 }
