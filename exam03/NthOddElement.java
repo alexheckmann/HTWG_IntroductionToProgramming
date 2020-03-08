@@ -11,6 +11,7 @@ import static org.junit.Assert.assertEquals;
 public class NthOddElement {
 
     public static int findNthOddElement(List<Integer> list, int n) {
+        // throws exception if the number at index 2 * n - 1, which should be an odd number, is even
         if (list.get(2 * n - 1) % 2 == 0) {
             throw new NoSuchElementException();
         } else {
