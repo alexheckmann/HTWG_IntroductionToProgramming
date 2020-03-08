@@ -3,7 +3,7 @@ package emailaddress;
 import java.util.Scanner;
 
 public class Registration {
-    private static String suggest(String emailAddress) {
+    private static String suggestUsername(String emailAddress) {
         String username = emailAddress.substring(0, emailAddress.indexOf('@'));
         return username;
     }
@@ -18,7 +18,7 @@ public class Registration {
         if (emailAddress.matches(regExEmail)) {
             System.out.println("Email valid");
             String regExName = regExEmail.substring(0,regExEmail.indexOf('@'));
-            String suggestion = suggest(emailAddress);
+            String suggestion = suggestUsername(emailAddress);
             if (suggestion.matches(regExName)) {
                 System.out.println("Username suggestion: " + suggestion);
             }
