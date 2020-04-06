@@ -23,8 +23,8 @@ public class Main {
         if (root == null)
             return true;
         
-        // If index assigned to current node is more than
-        // number of nodes in tree, then tree is not complete
+        // If index assigned to current node is bigger than the
+        // number of nodes of the tree, then tree is not complete
         if (index >= numberNodes)
             return false;
 
