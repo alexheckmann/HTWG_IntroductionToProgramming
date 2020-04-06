@@ -36,7 +36,7 @@ public class Main {
 
     public static boolean isFull(BinarySearchTree root) {
 
-        // empty tree is full(?)
+        // empty tree is not full
         if (root == null) {
             return false;
         }
