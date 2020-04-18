@@ -1,3 +1,5 @@
+package bst;
+
 public class BinarySearchTree<T extends Comparable<T>> {
 
     private T value;
@@ -32,6 +34,11 @@ public class BinarySearchTree<T extends Comparable<T>> {
         this.rightSubTree = rightSubTree;
     }
 
+    /**
+     * Inserts a given value at the appropriate position of the tree.
+     *
+     * @param value value to be inserted
+     */
     public void insert(T value) {
 
         if (value.compareTo(this.value) < 0) {
@@ -63,6 +70,11 @@ public class BinarySearchTree<T extends Comparable<T>> {
         }
     }
 
+    /**
+     * Calculates the tree's current size.
+     *
+     * @return the tree's current size
+     */
     public int size() {
 
         int size = 1;
@@ -77,6 +89,12 @@ public class BinarySearchTree<T extends Comparable<T>> {
         return size;
     }
 
+    /**
+     * Recursively checks whether the tree contains a given value.
+     *
+     * @param value value to search for
+     * @return whether or not the tree contains the value.
+     */
     public boolean contains(T value) {
 
         if (value.equals(this.value)) {

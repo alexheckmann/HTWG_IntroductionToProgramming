@@ -1,3 +1,5 @@
+package bst;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -10,19 +12,41 @@ public class Main {
         bst.insert(15);
         bst.print();
         System.out.println("size: " + bst.size());
-        System.out.println("is complete? " + isComplete(bst, 0, bst.size()));
+        System.out.println("is complete? " + isComplete(bst));
         System.out.println("is full? " + isFull(bst));
         System.out.println("Contains 3? " + bst.contains(3));
 
 
     }
 
+    /**
+     * Checks whether a given tree is complete.
+     *
+     * @param root root of the tree to be checked
+     * @param <T>
+     * @return whether or not the tree is complete
+     */
+    public static <T extends Comparable<T>> boolean isComplete(BinarySearchTree<T> root) {
 
-    public static boolean isComplete(BinarySearchTree root, int index, int numberNodes) {
+        return isComplete(root, 0, root.size());
+
+    }
+
+    /**
+     * Internal method overloading the public method. Checks whether a given tree is complete.
+     *
+     * @param root        root of the tree to be checked
+     * @param index       index of the node to start with, default given by the overloading method is 0
+     * @param numberNodes number of nodes to check, default given by the overloading method is {@code root.size()}
+     * @param <T>
+     * @return whether or not the tree is complete
+     */
+    private static <T extends Comparable<T>> boolean isComplete(BinarySearchTree<T> root, int index, int numberNodes) {
+
         // An empty tree is complete
         if (root == null)
             return true;
-        
+
         // If index assigned to current node is bigger than the
         // number of nodes of the tree, then tree is not complete
         if (index >= numberNodes)
@@ -34,7 +58,7 @@ public class Main {
 
     }
 
-    public static boolean isFull(BinarySearchTree root) {
+    public static <T extends Comparable<T>> boolean isFull(BinarySearchTree<T> root) {
 
         // empty tree is not full
         if (root == null) {

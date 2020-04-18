@@ -30,7 +30,7 @@ public class MaxHeap<T extends Comparable<T>> {
             } else if (a[i].compareTo(a[i + 1]) >= 0) {
                 break;
             }
-            exchange(i, j);
+            swap(i, j);
             i = j;
         }
     }
@@ -50,7 +50,7 @@ public class MaxHeap<T extends Comparable<T>> {
 
     public T deleteMax() {
         T root = a[1];
-        exchange(1, N--);
+        swap(1, N--);
         a[N + 1] = null;
         sink(1);
         return root;
@@ -71,7 +71,7 @@ public class MaxHeap<T extends Comparable<T>> {
         System.out.println("The Max Heap is ");
         maxHeap.print();
         while (!maxHeap.isEmpty()) {
-            StdOut.print((char) maxHeap.deleteMax() + " ");
+            System.out.print((char) maxHeap.deleteMax() + " ");
         }
 
     }

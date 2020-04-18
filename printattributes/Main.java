@@ -1,7 +1,5 @@
 package printattributes;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -15,7 +13,7 @@ public class Main {
     }
 
 
-    private static void printObjectsAttributes(@NotNull Object object) throws InvocationTargetException, IllegalAccessException {
+    private static void printObjectsAttributes(Object object) throws InvocationTargetException, IllegalAccessException {
         Class clazz = object.getClass();
         Field[] attributes = clazz.getDeclaredFields();
         Method[] methods = clazz.getDeclaredMethods();

@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="ojdbc10">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../../../Semester 3/Datenbank- und Informationssysteme I/JDBC/ojdbc10.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

@@ -1,13 +1,20 @@
-import org.jetbrains.annotations.NotNull;
+package sorting;
 
+/**
+ * Contains generified implementations of the Quicksort, Mergesort and Insertionsort sorting algorithms.
+ */
 public class Sort {
 
     public static <T extends Comparable<T>> void mergeSort(T[] m) {
         if (m == null || m.length == 0) {
             throw new IllegalArgumentException();
         } else {
+
+            // if length of the array is <= 10 insertion sort will be used instead as it's faster for <= 10 elements
             if (m.length <= 10) {
+
                 insertionSort(m);
+
             } else {
                 T[] auxiliaryArray = (T[]) new Comparable[m.length];
                 mergeSort(m, auxiliaryArray, 0, m.length - 1);
@@ -83,8 +90,12 @@ public class Sort {
         if (m == null || m.length == 0) {
             throw new IllegalArgumentException();
         } else {
+
+            // if length of the array is <= 8 insertion sort will be used instead as it's faster for <= 8 elements
             if (m.length <= 8) {
+
                 insertionSort(m);
+
             } else {
                 quickSort(m, 0, m.length - 1);
             }
@@ -101,7 +112,7 @@ public class Sort {
         quickSort(m, j + 1, to);
     }
 
-    private static <T extends Comparable<T>> int divide(@NotNull T[] m, int from, int to) {
+    private static <T extends Comparable<T>> int divide(T[] m, int from, int to) {
         int i = from;
         int j = to + 1;
 
@@ -128,7 +139,7 @@ public class Sort {
         return j;
     }
 
-    private static <T> void swap(@NotNull T[] m, int i, int j) {
+    private static <T> void swap(T[] m, int i, int j) {
         T t = m[i];
         m[i] = m[j];
         m[j] = t;
