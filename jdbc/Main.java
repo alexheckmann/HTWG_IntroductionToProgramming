@@ -1,5 +1,6 @@
-package labor;
+package jdbc;
 
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.text.ParseException;
 
@@ -123,11 +124,22 @@ public class Main {
 
         try {
 
-           Program.connect();
+            Program.connect();
+
+            // Set the transaction isolation level to serializable:
+            // to be sure that the DBS uses serializability as correctness criterion
+            System.out.println(" - transaction isolation level is: " + Program.connection.getTransactionIsolation()
+                    + " (" + Utils.decodeTransactionIsolationLevel(Program.connection.getTransactionIsolation()) + ")");
+            Program.connection.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
+            System.out.println(" - transaction isolation level is now: " + Program.connection.getTransactionIsolation()
+                    + " (" + Utils.decodeTransactionIsolationLevel(Program.connection.getTransactionIsolation()) + ")");
+
 
             System.out.println("Auto Commit was " + Program.connection.getAutoCommit());
             Program.connection.setAutoCommit(false);
             System.out.println("Auto Commit is now " + Program.connection.getAutoCommit());
+
+            System.out.println("... transaction parameters for connection set!");
 
             printOptions();
 

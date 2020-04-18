@@ -1,4 +1,4 @@
-package labor;
+package jdbc;
 
 public enum Table {
 

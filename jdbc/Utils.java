@@ -1,5 +1,6 @@
-package labor;
+package jdbc;
 
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
@@ -155,6 +156,29 @@ public class Utils {
         if (Program.debugMode) {
             System.out.println(">> DEBUG INFO: " + information);
         }
+    }
+
+    /*
+     * Decode SQL transaction isolation levels
+     */
+    public static String decodeTransactionIsolationLevel(int transactionIsolationLevel) {
+
+        switch (transactionIsolationLevel) {
+
+            case Connection.TRANSACTION_NONE:
+                return "No transactions supported";
+            case Connection.TRANSACTION_READ_COMMITTED:
+                return "Read committed";
+            case Connection.TRANSACTION_READ_UNCOMMITTED:
+                return "Read uncommitted";
+            case Connection.TRANSACTION_REPEATABLE_READ:
+                return "Repeatable read";
+            case Connection.TRANSACTION_SERIALIZABLE:
+                return "Serializable";
+            default:
+                return "Unknown trasaction isolation level";
+        }
+
     }
 
     /**

@@ -1,4 +1,4 @@
-package labor;
+package jdbc;
 
 import oracle.jdbc.driver.OracleDriver;
 
@@ -73,7 +73,7 @@ public class Program {
             String cityName;
 
             System.out.println("These are the available cities and the country they lie in: ");
-            if (Queries.selectTable(Table.CITY) == 0){
+            if (Queries.selectTable(Table.CITY) == 0) {
                 System.out.println("No cities found. Cancelling...");
                 return;
             }
@@ -181,7 +181,7 @@ public class Program {
         try {
 
             System.out.println("These are the available customers: ");
-            if (Queries.selectTable(Table.CUSTOMER) == 0){
+            if (Queries.selectTable(Table.CUSTOMER) == 0) {
                 System.out.println("No customers found. Cancelling...");
                 return;
             }
@@ -194,7 +194,7 @@ public class Program {
 
             Utils.printDebugInfo("Entered userID: " + userID);
 
-            if (Queries.selectTable(Table.FLAT) == 0){
+            if (Queries.selectTable(Table.FLAT) == 0) {
                 System.out.println("No flats found. Cancelling...");
                 return;
             }
@@ -383,7 +383,7 @@ public class Program {
 
             System.out.println("These are the available occupancies: ");
 
-            if (Queries.selectTable(Table.OCCUPANCY) == 0){
+            if (Queries.selectTable(Table.OCCUPANCY) == 0) {
                 System.out.println("No occupancies found. Cancelling...");
                 return;
             }

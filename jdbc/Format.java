@@ -1,5 +1,5 @@
 
-package labor;
+package jdbc;
 
 import java.text.DateFormat;
 import java.text.ParseException;
