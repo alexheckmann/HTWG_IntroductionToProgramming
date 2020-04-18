@@ -126,14 +126,15 @@ public class Main {
 
             Program.connect();
 
-            // Set the transaction isolation level to serializable:
-            // to be sure that the DBS uses serializability as correctness criterion
-            System.out.println(" - transaction isolation level is: " + Program.connection.getTransactionIsolation()
-                    + " (" + Utils.decodeTransactionIsolationLevel(Program.connection.getTransactionIsolation()) + ")");
-            Program.connection.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
-            System.out.println(" - transaction isolation level is now: " + Program.connection.getTransactionIsolation()
-                    + " (" + Utils.decodeTransactionIsolationLevel(Program.connection.getTransactionIsolation()) + ")");
-
+            if (Program.connection.getMetaData().supportsTransactionIsolationLevel(Program.connection.TRANSACTION_SERIALIZABLE)) {
+                // Set the transaction isolation level to serializable:
+                // to be sure that the DBS uses serializability as correctness criterion
+                System.out.println(" - transaction isolation level is: " + Program.connection.getTransactionIsolation()
+                        + " (" + Utils.decodeTransactionIsolationLevel(Program.connection.getTransactionIsolation()) + ")");
+                Program.connection.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
+                System.out.println(" - transaction isolation level is now: " + Program.connection.getTransactionIsolation()
+                        + " (" + Utils.decodeTransactionIsolationLevel(Program.connection.getTransactionIsolation()) + ")");
+            }
 
             System.out.println("Auto Commit was " + Program.connection.getAutoCommit());
             Program.connection.setAutoCommit(false);
