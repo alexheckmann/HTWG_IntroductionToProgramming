@@ -1,10 +1,6 @@
-# Java-Programming
-Hier ist Code zu finden, der im Zuge der unten aufgeführten Vorlesungen oder privat als Übung von mir erstellt wurde.
-- Einführung in die Programmierung
-- Algorithmen &amp; Datenstrukturen
-- Software Engineering I
-- Datenbank- &amp; Informationssysteme I
-- Software Engineering II
-- Rechnernetze & Kommunikationssysteme
-- Verteilte Systeme
-- sonstiges
+<h1>Introduction to Programming</h1>
+This repository contains the Java implementation of tasks during the introductory course to programming.
+<ul>
+<li><i><strong>Enigma.java</strong></i>: Contains an implementation of the Enigma used by the germans during WWII to encrypt and decrypt message</li>
+<li><i><strong>PalindromeTester.java</strong></i>: Contains an implementation of a program checking whether a given String is a palindrome</li>
+</ul>
